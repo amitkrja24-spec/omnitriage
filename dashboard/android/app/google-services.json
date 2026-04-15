@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738437907221",
+    "project_id": "omnitriage-prod",
+    "storage_bucket": "omnitriage-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738437907221:android:fb5e3530d3f953c3d51f1c",
+        "android_client_info": {
+          "package_name": "com.example.omnitriage_dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFC9JjqxmPrt-dqoglteRQC8o98-GcVTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

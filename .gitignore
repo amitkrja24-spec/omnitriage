@@ -1,0 +1,37 @@
+# API Keys and secrets — NEVER commit these
+  functions/.env
+  functions/serviceAccountKey.json
+  *.env
+  .env.local
+  .env.production
+  
+  # Node
+  node_modules/
+  functions/node_modules/
+  scripts/node_modules/
+  
+  # Flutter
+  dashboard/.dart_tool/
+  dashboard/build/
+  dashboard/.flutter-plugins
+  dashboard/.flutter-plugins-dependencies
+  dashboard/.packages
+  
+  # Firebase
+  .firebase/
+  firebase-debug.log
+  firestore-debug.log
+  
+  # Windows
+  Thumbs.db
+  desktop.ini
+  
+  # VS Code
+  .vscode/settings.json
+
+
+functions/serviceAccountKey.json
+functions/serviceAccountkey.json
+
+
+functions/serviceAccount*.json
