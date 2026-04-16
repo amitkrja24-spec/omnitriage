@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-
+const { FieldValue } = require('firebase-admin/firestore');
 function db() {
   return admin.firestore();
 }
@@ -10,8 +10,8 @@ async function createTask(taskData) {
   const task = {
     ...taskData,
     task_id: ref.id,
-    created_at: admin.firestore.FieldValue.serverTimestamp(),
-    updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    created_at: FieldValue.serverTimestamp(),
+    updated_at: FieldValue.serverTimestamp(),
   };
   await ref.set(task);
   return ref.id;
@@ -21,7 +21,7 @@ async function createTask(taskData) {
 async function updateTask(taskId, updates) {
   await db().collection('tasks').doc(taskId).update({
     ...updates,
-    updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    updated_at: FieldValue.serverTimestamp(),
   });
 }
 
@@ -101,7 +101,7 @@ async function writeAuditLog(taskId, action, actorId, actorRole, details = {}) {
     action: action,
     actor_id: String(actorId),
     actor_role: actorRole,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    timestamp: FieldValue.serverTimestamp(),
     details: details,
   });
 }

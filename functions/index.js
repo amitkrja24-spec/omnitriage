@@ -9,7 +9,7 @@ if (!admin.apps.length) {
     const serviceAccount = require('./serviceAccountKey.json');
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
-      projectId: "amitakankcha", ////////////////////////////////////////////////////////////////////////////// HARDCODED PROJECT ID
+      projectId: "amit", //////////////amitakankcha//////////////////////////////////////////////////////////////// HARDCODED PROJECT ID
     });
     console.log('Firebase Admin initialized with service account');
   } catch (e) {
@@ -41,7 +41,7 @@ exports.onTaskCreated = functions.firestore
   .onCreate(async (snap, context) => {
     const task = snap.data();
     const taskId = context.params.taskId;
-    
+
     if (
       !task.needs_review &&
       task.confidence_score >= 0.80 &&
@@ -58,16 +58,16 @@ exports.onTaskCreated = functions.firestore
 exports.manualDispatch = functions.https.onRequest(async (req, res) => {
   const { taskId } = req.body;
   if (!taskId) return res.status(400).json({ error: 'taskId required' });
-  
+
   try {
     const taskSnap = await admin.firestore().collection('tasks').doc(taskId).get();
     if (!taskSnap.exists) return res.status(404).json({ error: 'Task not found' });
-    
+
     const task = taskSnap.data();
     if (task.status === 'dispatching' || task.status === 'assigned') {
       return res.status(200).json({ message: 'Already dispatched', status: task.status });
     }
-    
+
     await dispatchVolunteers(taskId, task);
     res.status(200).json({ success: true, taskId });
   } catch (err) {
