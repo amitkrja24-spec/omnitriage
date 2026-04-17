@@ -9,7 +9,7 @@ if (!admin.apps.length) {
     const serviceAccount = require('./serviceAccountKey.json');
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
-      projectId: "dhgiwd", //////////////amitakankcha//////////////////////////////////////////////////////////////// HARDCODED PROJECT ID
+      projectId: "amitomnitriage", ////////////////////////////////////////////////////////////////////////////// HARDCODED PROJECT ID
     });
     console.log('Firebase Admin initialized with service account');
   } catch (e) {

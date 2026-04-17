@@ -2,7 +2,7 @@
 const fetch = require('node-fetch');
 
 // THE CHANGE: Hardcoded the Telegram Bot Token
-const BASE_URL = `https://api.telegram.org/bot4vdwchv`;/////////////////////////////////////////////////////////
+const BASE_URL = `https://api.telegram.org/botamittelegram`;/////////////////////////////////////////////////////////
 
 // Send a text message to a Telegram chat
 async function sendMessage(chatId, text, options = {}) {
@@ -45,7 +45,7 @@ async function getFile(fileId) {
 async function downloadFile(filePath) {
   try {
     // THE CHANGE: Hardcoded the Telegram Bot Token here as well
-    const url = `https://api.telegram.org/file/bot5bwdh/${filePath}`;///////////////////////////////////
+    const url = `https://api.telegram.org/file/botamittelegram/${filePath}`;///////////////////////////////////
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Download failed: ${response.status}`);
     const arrayBuffer = await response.arrayBuffer();

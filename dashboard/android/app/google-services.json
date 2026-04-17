@@ -1,8 +1,8 @@
 {
   "project_info": {
     "project_number": "738437907221",
-    "project_id": "omnitriage-prod",
-    "storage_bucket": "omnitriage-prod.firebasestorage.app"
+    "project_id": "amitomnitriage",
+    "storage_bucket": "amitomnitriage.firebasestorage.app"
   },
   "client": [
     {

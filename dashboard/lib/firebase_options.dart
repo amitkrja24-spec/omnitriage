@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -47,16 +44,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyAFC9JjqxmPrt-dqoglteRQC8o98-GcVTI',
     appId: '1:738437907221:android:fb5e3530d3f953c3d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'omnitriage-prod',
-    storageBucket: 'omnitriage-prod.firebasestorage.app',
+    projectId: 'amitomnitriage',
+    storageBucket: 'amitomnitriage.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCNoOLMWvsfgrzBdGdR9sSPhukPyBztJH8',
     appId: '1:738437907221:ios:ff2803f23e03d9f7d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'omnitriage-prod',
-    storageBucket: 'omnitriage-prod.firebasestorage.app',
+    projectId: 'amitomnitriage',
+    storageBucket: 'amitomnitriage.firebasestorage.app',
     iosBundleId: 'com.example.omnitriageDashboard',
   );
 
@@ -64,8 +61,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyCNoOLMWvsfgrzBdGdR9sSPhukPyBztJH8',
     appId: '1:738437907221:ios:ff2803f23e03d9f7d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'omnitriage-prod',
-    storageBucket: 'omnitriage-prod.firebasestorage.app',
+    projectId: 'amitomnitriage',
+    storageBucket: 'amitomnitriage.firebasestorage.app',
     iosBundleId: 'com.example.omnitriageDashboard',
   );
 
@@ -73,8 +70,17 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBcwLSPCtjm7CYXSPiR3Z_Th20UYZz9fEE',
     appId: '1:738437907221:web:e6f18cd04e1d8e67d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'omnitriage-prod',
-    authDomain: 'omnitriage-prod.firebaseapp.com',
-    storageBucket: 'omnitriage-prod.firebasestorage.app',
+    projectId: 'amitomnitriage',
+    authDomain: 'amitomnitriage.firebaseapp.com',
+    storageBucket: 'amitomnitriage.firebasestorage.app',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBcwLSPCtjm7CYXSPiR3Z_Th20UYZz9fEE',
+    appId: '1:738437907221:web:88baa91c7d517640d51f1c',
+    messagingSenderId: '738437907221',
+    projectId: 'amitomnitriage',
+    authDomain: 'amitomnitriage.firebaseapp.com',
+    storageBucket: 'amitomnitriage.firebasestorage.app',
   );
 }
