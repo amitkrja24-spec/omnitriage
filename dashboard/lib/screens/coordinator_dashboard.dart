@@ -29,7 +29,7 @@ import 'volunteer_roster_screen.dart';
 // Cloud Function URL (local emulator during development)
 // ⚑ CHANGE THIS to your ngrok URL + function path before demo
 const String DISPATCH_FUNCTION_URL =
-    'https://anteater-tanned-delta.ngrok-free.dev/amitomnitriage/us-central1/manualDispatch';
+    'https://anteater-tanned-delta.ngrok-free.dev/akankchaomnitriage/us-central1/manualDispatch';
 
 class CoordinatorDashboard extends StatefulWidget {
   const CoordinatorDashboard({super.key});
@@ -98,11 +98,23 @@ class _CoordinatorDashboardState extends State<CoordinatorDashboard> {
 
   Future<void> _dispatchTask(String taskId) async {
     try {
-      await http.post(
+      final response = await http.post(
         Uri.parse(DISPATCH_FUNCTION_URL),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'taskId': taskId}),
       );
+
+      if (response.statusCode != 200) {
+        throw Exception(response.body);
+      }
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Dispatch successful'),
+          ),
+        );
+      }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

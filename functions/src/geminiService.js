@@ -3,7 +3,7 @@ const { GoogleGenAI } = require('@google/genai');
 const { EXTRACTION_PROMPT, TEXT_SUFFIX, IMAGE_SUFFIX, AUDIO_SUFFIX } = require('./geminiPrompt');
 
 // THE CHANGE: Hardcoded API key for the bypass
-const ai = new GoogleGenAI({ apiKey: "amitapi" });/////////////////////////////////////////////////////////////////////////
+const ai = new GoogleGenAI({ apiKey: "akankchaapi" });/////////////////////////////////////////////////////////////////////////
 
 // Parse Gemini's JSON response safely (Kept exactly as requested)
 function parseGeminiResponse(rawText) {
