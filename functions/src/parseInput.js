@@ -105,12 +105,12 @@ const SKILL_LIST = [
 function buildSkillsMenu() {
   let menu = 'Select your skills (reply with numbers separated by commas):\n\n';
   SKILL_LIST.forEach((skill, i) => {
-    menu += `${i + 1}. ${skill}\n`;
+    // Replace underscores with spaces so Telegram doesn't crash
+    menu += `${i + 1}. ${skill.replace(/_/g, ' ')}\n`; 
   });
-  menu += '\nExample: "1,3,5" for nurse, first_aid, driving';
+  menu += '\nExample: "1,3" for nurse, first aid';
   return menu;
 }
-
 async function handleRegistration(chatId, telegramId, messageText) {
   const session = await getVolunteerSession(telegramId);
   

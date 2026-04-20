@@ -100,7 +100,10 @@ class _CoordinatorDashboardState extends State<CoordinatorDashboard> {
     try {
       final response = await http.post(
         Uri.parse(DISPATCH_FUNCTION_URL),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
         body: jsonEncode({'taskId': taskId}),
       );
 

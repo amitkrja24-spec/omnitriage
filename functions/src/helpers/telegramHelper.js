@@ -59,15 +59,15 @@ async function downloadFile(filePath) {
 // Download a Telegram file by file_id, return as base64 string and mimeType
 async function downloadFileAsBase64(fileId, defaultMime = 'application/octet-stream') {
   const fileInfo = await getFile(fileId);
-  
+
   // Check file size (5MB limit)
   if (fileInfo.file_size && fileInfo.file_size > 5 * 1024 * 1024) {
     throw new Error('FILE_TOO_LARGE');
   }
-  
+
   const buffer = await downloadFile(fileInfo.file_path);
   const base64 = buffer.toString('base64');
-  
+
   // Determine MIME type from file path
   let mimeType = defaultMime;
   if (fileInfo.file_path.endsWith('.jpg') || fileInfo.file_path.endsWith('.jpeg')) {
@@ -79,7 +79,7 @@ async function downloadFileAsBase64(fileId, defaultMime = 'application/octet-str
   } else if (fileInfo.file_path.endsWith('.mp4')) {
     mimeType = 'video/mp4';
   }
-  
+
   return { base64, mimeType, fileSize: fileInfo.file_size };
 }
 

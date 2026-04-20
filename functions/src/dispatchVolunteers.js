@@ -12,20 +12,20 @@ function buildDispatchMessage(task, volunteer, distance) {
     ? '⏱ This request expires in 10 minutes.'
     : 'No rush — available for 24 hours.';
 
-  return `${urgencyLabel} — Urgency ${task.urgency}/5
-📍 ${task.location_text}
-🏷 ${task.need_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-👥 ${task.estimated_people_affected ? task.estimated_people_affected + ' residents' : 'Residents'} — ${task.brief_description}
-🔧 Skills needed: ${task.skills_required.join(', ')}
-📏 Distance: ${distance}
-👤 ${task.count_needed} volunteer${task.count_needed > 1 ? 's' : ''} needed
+  // Strip ALL potential crash characters
+  const safeNeed = task.need_type.replace(/_/g, ' ').toUpperCase();
+  const safeSkills = task.skills_required.join(', ').replace(/_/g, ' ');
 
-Reply *YES* to accept
-Reply *NO* to decline
-
-${urgencyFooter}`;
+  // ABSOLUTELY NO ASTERISKS OR UNDERSCORES BELOW THIS LINE
+  return `${urgencyLabel} — Urgency ${task.urgency}/5\n` +
+         `📍 Location: ${task.location_text}\n` +
+         `⚠️ Need: ${safeNeed}\n` +
+         `🔧 Skills needed: ${safeSkills}\n` +
+         `👨‍⚕️ ${task.count_needed} volunteer(s) needed\n\n` +
+         `Reply YES to accept\n` +
+         `Reply NO to decline\n\n` +
+         `${urgencyFooter}`;
 }
-
 async function dispatchVolunteers(taskId, task) {
   const db = admin.firestore();
 
