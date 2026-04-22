@@ -1,8 +1,8 @@
 {
   "project_info": {
     "project_number": "738437907221",
-    "project_id": "akankchaomnitriage",
-    "storage_bucket": "akankchaomnitriage.firebasestorage.app"
+    "project_id": "akankchaproject",
+    "storage_bucket": "akankchaproject.firebasestorage.app"
   },
   "client": [
     {
