@@ -29,7 +29,7 @@ import 'volunteer_roster_screen.dart';
 // Cloud Function URL (local emulator during development)
 // ⚑ CHANGE THIS to your ngrok URL + function path before demo
 const String DISPATCH_FUNCTION_URL =
-    'https://anteater-tanned-delta.ngrok-free.dev/akankchaproject/us-central1/manualDispatch';
+    'https://us-central1-omnitriage-prod.cloudfunctions.net/manualDispatch';
 
 class CoordinatorDashboard extends StatefulWidget {
   const CoordinatorDashboard({super.key});

@@ -44,16 +44,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyAFC9JjqxmPrt-dqoglteRQC8o98-GcVTI',
     appId: '1:738437907221:android:fb5e3530d3f953c3d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'akankchaproject',
-    storageBucket: 'akankchaproject.firebasestorage.app',
+    projectId: 'omnitriage-prod',
+    storageBucket: 'omnitriage-prod.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCNoOLMWvsfgrzBdGdR9sSPhukPyBztJH8',
     appId: '1:738437907221:ios:ff2803f23e03d9f7d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'akankchaproject',
-    storageBucket: 'akankchaproject.firebasestorage.app',
+    projectId: 'omnitriage-prod',
+    storageBucket: 'omnitriage-prod.firebasestorage.app',
     iosBundleId: 'com.example.omnitriageDashboard',
   );
 
@@ -61,8 +61,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyCNoOLMWvsfgrzBdGdR9sSPhukPyBztJH8',
     appId: '1:738437907221:ios:ff2803f23e03d9f7d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'akankchaproject',
-    storageBucket: 'akankchaproject.firebasestorage.app',
+    projectId: 'omnitriage-prod',
+    storageBucket: 'omnitriage-prod.firebasestorage.app',
     iosBundleId: 'com.example.omnitriageDashboard',
   );
 
@@ -70,17 +70,17 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBcwLSPCtjm7CYXSPiR3Z_Th20UYZz9fEE',
     appId: '1:738437907221:web:e6f18cd04e1d8e67d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'akankchaproject',
-    authDomain: 'akankchaproject.firebaseapp.com',
-    storageBucket: 'akankchaproject.firebasestorage.app',
+    projectId: 'omnitriage-prod',
+    authDomain: 'omnitriage-prod.firebaseapp.com',
+    storageBucket: 'omnitriage-prod.firebasestorage.app',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBcwLSPCtjm7CYXSPiR3Z_Th20UYZz9fEE',
     appId: '1:738437907221:web:88baa91c7d517640d51f1c',
     messagingSenderId: '738437907221',
-    projectId: 'akankchaproject',
-    authDomain: 'akankchaproject.firebaseapp.com',
-    storageBucket: 'akankchaproject.firebasestorage.app',
+    projectId: 'omnitriage-prod',
+    authDomain: 'omnitriage-prod.firebaseapp.com',
+    storageBucket: 'omnitriage-prod.firebasestorage.app',
   );
 }

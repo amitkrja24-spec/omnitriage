@@ -3,14 +3,14 @@
     "platforms": {
       "android": {
         "default": {
-          "projectId": "akankchaproject",
+          "projectId": "omnitriage-prod",
           "appId": "1:738437907221:android:fb5e3530d3f953c3d51f1c",
           "fileOutput": "android/app/google-services.json"
         }
       },
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "akankchaproject",
+          "projectId": "omnitriage-prod",
           "configurations": {
             "android": "1:738437907221:android:fb5e3530d3f953c3d51f1c",
             "ios": "1:738437907221:ios:ff2803f23e03d9f7d51f1c",
