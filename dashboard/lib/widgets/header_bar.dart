@@ -1,8 +1,8 @@
+import '../screens/operations_screen.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../theme/app_theme.dart';
-import '../screens/volunteer_roster_screen.dart';
 import '../screens/reports_screen.dart';
 
 class HeaderBar extends StatefulWidget {
@@ -88,6 +88,17 @@ class _HeaderBarState extends State<HeaderBar>
             ],
           ),
           const Spacer(),
+          ElevatedButton.icon(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const OperationsScreen()),
+    );
+  },
+  icon: const Icon(Icons.radar, size: 14),
+  label: const Text('Operations Vault'),
+  style: ElevatedButton.styleFrom(backgroundColor: AppTheme.accentBlue),
+),
           // ── Live indicator
           Row(
             children: [

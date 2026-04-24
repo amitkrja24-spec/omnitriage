@@ -28,6 +28,9 @@ class TaskModel {
   final String notes;
   final String briefDescription;
 
+  // NEW: Tracking physical arrivals
+  final Map<String, DateTime> volunteerArrivals;
+
   TaskModel({
     required this.taskId,
     required this.ngoId,
@@ -55,10 +58,21 @@ class TaskModel {
     required this.dispatchTimeout,
     required this.notes,
     required this.briefDescription,
+    required this.volunteerArrivals,
   });
 
   factory TaskModel.fromFirestore(DocumentSnapshot doc) {
     final d = doc.data() as Map<String, dynamic>? ?? {};
+
+    // Safely parse arrivals
+    Map<String, DateTime> arrivals = {};
+    if (d['volunteer_arrivals'] != null) {
+      final map = d['volunteer_arrivals'] as Map<String, dynamic>;
+      map.forEach((key, value) {
+        if (value is Timestamp) arrivals[key] = value.toDate();
+      });
+    }
+
     return TaskModel(
       taskId: doc.id,
       ngoId: d['ngo_id'] ?? '',
@@ -69,7 +83,8 @@ class TaskModel {
       urgency: (d['urgency'] as num?)?.toInt() ?? 3,
       skillsRequired: List<String>.from(d['skills_required'] ?? []),
       countNeeded: (d['count_needed'] as num?)?.toInt() ?? 1,
-      estimatedPeopleAffected: (d['estimated_people_affected'] as num?)?.toInt(),
+      estimatedPeopleAffected:
+          (d['estimated_people_affected'] as num?)?.toInt(),
       confidenceScore: (d['confidence_score'] as num?)?.toDouble() ?? 0.5,
       needsReview: d['needs_review'] ?? false,
       status: d['status'] ?? 'open',
@@ -86,31 +101,50 @@ class TaskModel {
       dispatchTimeout: d['dispatch_timeout'] ?? false,
       notes: d['notes'] ?? '',
       briefDescription: d['brief_description'] ?? '',
+      volunteerArrivals: arrivals,
     );
   }
 
-  bool get isActive => ['open', 'dispatching', 'flagged_medium', 'flagged_low'].contains(status);
+  // UPDATED: Now keeps "assigned" tasks visible as active
+  bool get isActive => [
+        'open',
+        'dispatching',
+        'assigned',
+        'flagged_medium',
+        'flagged_low'
+      ].contains(status);
   bool get isCritical => urgency >= 4;
-  bool get isNew => createdAt != null && DateTime.now().difference(createdAt!).inMinutes < 10;
+  bool get isNew =>
+      createdAt != null && DateTime.now().difference(createdAt!).inMinutes < 10;
   bool get canAutoDispatch => confidenceScore >= 0.80 && !needsReview;
 
   String get needTypeDisplay {
     switch (needType) {
-      case 'food_ration': return 'Food / Ration';
-      case 'medical': return 'Medical';
-      case 'sanitation': return 'Sanitation';
-      case 'education': return 'Education';
-      case 'shelter': return 'Shelter';
-      case 'disaster': return 'Disaster';
-      default: return 'Other';
+      case 'food_ration':
+        return 'Food / Ration';
+      case 'medical':
+        return 'Medical';
+      case 'sanitation':
+        return 'Sanitation';
+      case 'education':
+        return 'Education';
+      case 'shelter':
+        return 'Shelter';
+      case 'disaster':
+        return 'Disaster';
+      default:
+        return 'Other';
     }
   }
 
   String get sourceIcon {
     switch (sourceType) {
-      case 'image': return '📷 Photo';
-      case 'voice': return '🎤 Voice note';
-      default: return '✏️ Text';
+      case 'image':
+        return '📷 Photo';
+      case 'voice':
+        return '🎤 Voice note';
+      default:
+        return '✏️ Text';
     }
   }
 

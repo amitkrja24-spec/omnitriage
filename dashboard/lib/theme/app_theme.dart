@@ -3,42 +3,43 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // ── Urgency Colors ─────────────────────────────────────────────
-  static const Color urgency5 = Color(0xFFE24B4A); // Critical red
-  static const Color urgency4 = Color(0xFFEF9F27); // High orange
-  static const Color urgency3 = Color(0xFF378ADD); // Medium blue
-  static const Color urgency2 = Color(0xFF1D9E75); // Low green
-  static const Color urgency1 = Color(0xFF9B9894); // Monitoring gray
+  static const Color urgency5 = Color(0xFFDC2626); // Critical red
+  static const Color urgency4 = Color(0xFFEA580C); // High orange
+  static const Color urgency3 = Color(0xFF2563EB); // Medium blue
+  static const Color urgency2 = Color(0xFF16A34A); // Low green
+  static const Color urgency1 = Color(0xFF9CA3AF); // Monitoring gray
 
   // ── Background & Surface ───────────────────────────────────────
-  static const Color background = Color(0xFF111827); // Deep navy/charcoal
-  static const Color surface = Color(0xFF1F2937); // Card background
-  static const Color surfaceElevated = Color(0xFF374151);
-  static const Color border = Color(0xFF374151);
+  static const Color background = Color(0xFFF3F4F6); // Light gray page bg
+  static const Color surface = Color(0xFFFFFFFF); // White card surface
+  static const Color surfaceElevated = Color(0xFFF9FAFB);
+  static const Color border = Color(0xFFE5E7EB);
 
   // ── Text Colors ────────────────────────────────────────────────
-  static const Color textPrimary = Color(0xFFF9FAFB);
-  static const Color textSecondary = Color(0xFF9CA3AF);
-  static const Color textMuted = Color(0xFF6B7280);
+  static const Color textPrimary = Color(0xFF111827);
+  static const Color textSecondary = Color(0xFF4B5563);
+  static const Color textMuted = Color(0xFF9CA3AF);
 
   // ── Accent Colors ──────────────────────────────────────────────
-  static const Color accentOrange = Color(0xFFEF9F27);
-  static const Color accentGreen = Color(0xFF1D9E75);
-  static const Color accentRed = Color(0xFFE24B4A);
+  static const Color accentOrange = Color(0xFFFF7D26); // Blinkit orange
+  static const Color accentGreen = Color(0xFF1A9B6C);
+  static const Color accentRed = Color(0xFFE23744); // Zomato red — primary CTA
   static const Color accentAmber = Color(0xFFF59E0B);
-  static const Color accentBlue = Color(0xFF378ADD);
+  static const Color accentBlue = Color(0xFF2563EB);
+  static const Color primaryRed = Color(0xFFE23744);
 
   // ── Status Colors ──────────────────────────────────────────────
   static const Color liveGreen = Color(0xFF10B981);
-  static const Color offlineRed = Color(0xFFEF4444);
+  static const Color offlineRed = Color(0xFFDC2626);
   static const Color warningAmber = Color(0xFFF59E0B);
 
   // ── Need Type Colors ───────────────────────────────────────────
-  static const Color needMedical = Color(0xFFE24B4A);
-  static const Color needFood = Color(0xFFEF9F27);
-  static const Color needSanitation = Color(0xFF378ADD);
-  static const Color needEducation = Color(0xFF8B5CF6);
-  static const Color needShelter = Color(0xFF6366F1);
-  static const Color needDisaster = Color(0xFF7F1D1D);
+  static const Color needMedical = Color(0xFFDC2626);
+  static const Color needFood = Color(0xFFFF7D26);
+  static const Color needSanitation = Color(0xFF2563EB);
+  static const Color needEducation = Color(0xFF7C3AED);
+  static const Color needShelter = Color(0xFF0891B2);
+  static const Color needDisaster = Color(0xFF9F1239);
   static const Color needOther = Color(0xFF6B7280);
 
   // ── Spacing ────────────────────────────────────────────────────
@@ -57,6 +58,28 @@ class AppTheme {
   static const Duration animFast = Duration(milliseconds: 200);
   static const Duration animMedium = Duration(milliseconds: 350);
   static const Duration animSlow = Duration(milliseconds: 600);
+
+  // ── Card Shadows ───────────────────────────────────────────────
+  static List<BoxShadow> get cardShadow => [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          blurRadius: 6,
+          offset: const Offset(0, 2),
+        ),
+      ];
+
+  static List<BoxShadow> get cardShadowElevated => [
+        BoxShadow(
+          color: const Color(0xFFE23744).withOpacity(0.12),
+          blurRadius: 16,
+          offset: const Offset(0, 4),
+        ),
+        BoxShadow(
+          color: Colors.black.withOpacity(0.06),
+          blurRadius: 8,
+          offset: const Offset(0, 2),
+        ),
+      ];
 
   // ── Helper: get color by urgency level ────────────────────────
   static Color urgencyColor(int urgency) {
@@ -94,15 +117,35 @@ class AppTheme {
     }
   }
 
-  // ── Main ThemeData ─────────────────────────────────────────────
-  static ThemeData get darkTheme {
+  // ── Helper: get emoji icon by need type ───────────────────────
+  static String needTypeIcon(String needType) {
+    switch (needType) {
+      case 'medical':
+        return '🏥';
+      case 'food_ration':
+        return '🍱';
+      case 'sanitation':
+        return '🚿';
+      case 'education':
+        return '📚';
+      case 'shelter':
+        return '🏠';
+      case 'disaster':
+        return '🆘';
+      default:
+        return '📋';
+    }
+  }
+
+  // ── Main Light ThemeData ───────────────────────────────────────
+  static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       scaffoldBackgroundColor: background,
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         background: background,
         surface: surface,
-        primary: accentOrange,
+        primary: accentRed,
         secondary: accentGreen,
         error: accentRed,
       ),
@@ -132,32 +175,62 @@ class AppTheme {
           labelSmall: TextStyle(color: textMuted, fontSize: 10),
         ),
       ),
-      cardTheme: const CardThemeData(
+      cardTheme: CardThemeData(
         color: surface,
         elevation: 0,
-        margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(radiusMD)),
+          borderRadius: const BorderRadius.all(Radius.circular(radiusMD)),
+          side: const BorderSide(color: border),
         ),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: surface,
         elevation: 0,
         centerTitle: false,
+        foregroundColor: textPrimary,
+        surfaceTintColor: Colors.transparent,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: accentOrange,
+          backgroundColor: accentRed,
           foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(radiusSM)),
           ),
-          padding:
-              EdgeInsets.symmetric(horizontal: spacingMD, vertical: spacingSM),
+          padding: const EdgeInsets.symmetric(
+            horizontal: spacingMD,
+            vertical: spacingSM,
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: background,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radiusSM),
+          borderSide: const BorderSide(color: border),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radiusSM),
+          borderSide: const BorderSide(color: border),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radiusSM),
+          borderSide: const BorderSide(color: accentRed, width: 1.5),
+        ),
+        hintStyle: const TextStyle(color: textMuted),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: spacingMD,
+          vertical: spacingSM,
         ),
       ),
       dividerColor: border,
+      dialogBackgroundColor: surface,
       useMaterial3: false,
     );
   }
+
+  // ── darkTheme alias — keeps main.dart untouched ───────────────
+  static ThemeData get darkTheme => lightTheme;
 }

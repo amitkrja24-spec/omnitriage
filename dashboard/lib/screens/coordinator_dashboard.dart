@@ -435,6 +435,7 @@ class _CoordinatorDashboardState extends State<CoordinatorDashboard> {
                                             : filtered[i];
                                       }),
                                       onDispatch: _dispatchTask,
+                                      allVolunteers: _volunteers,
                                     ),
                                   ),
                       ),
